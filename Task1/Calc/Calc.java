@@ -9,12 +9,12 @@ public class Calc {
 		float n1 = in.nextFloat();
 
 		System.out.print("Input second number: ");
-		in = new Scanner(System.in);
+		// in = new Scanner(System.in);
 		float n2 = in.nextFloat();
 
 		System.out.print("Input act: ");
-		in = new Scanner(System.in);
-		String act = in.nextLine();
+		// in = new Scanner(System.in);
+		String act = in.next();
 
 		float res;
 		switch (act)
