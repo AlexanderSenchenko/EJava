@@ -1,7 +1,9 @@
 package com.example;
 
 import java.util.*;
+import java.io.*;
 import com.example.PhoneBook;
+// import com.example.User;
 
 public class Main {
 
@@ -16,10 +18,31 @@ public class Main {
 		phonebook.addUr("Roflan", "789", "012");
 		phonebook.addUr("Chelick", "234", "567");
 
-		System.out.println("Count fiz: " + phonebook.getCountFiz());
-		System.out.println("Count ur: " + phonebook.getCountUr());
+		// try (FileReader fr = new FileReader("Fiz.csv")) {
+		// 	char[] buf = new char[256];
+		// 	String str = "";
+		// 	ArrayList<String> strings = new ArrayList<String>();
+		// 	int line = fr.read(buf);
 
-		phonebook.printAll();
+		// 	for (int i = 0; i < line && buf[i] != '\n'; i++) {
+		// 		str += buf[i];
+		// 	}
+		// 	strings.add(str);
+
+		// 	System.out.println("Line: " + line);
+		// 	System.out.println("String: " + str);
+		// 	// System.out.print("String: ");
+		// 	// for (char a : buf) {
+		// 	// 	System.out.print(a);
+		// 	// }
+		// 	fr.close();
+		// } catch (IOException error) {
+		// 	System.out.println(error.getMessage());
+		// }
+
+		// phonebook.writeFizInFile();
+
+		phonebook.readFizInFile();
 	}
 
 	static void testTime() {

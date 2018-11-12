@@ -1,14 +1,15 @@
 package com.example;
+import com.example.CSV;
 
-public class User {
+public class User implements CSV {
+	private static int index = 1;
+	private String fio;
+	private String phone;
+
 	public User(String fio, String phone) {
 		setFio(fio);
 		setPhone(phone);
 	}
-
-	static Integer index = 1;
-	private String fio;
-	private String phone;
 
 	public void setFio(String fio) {
 		this.fio = fio;
@@ -26,7 +27,18 @@ public class User {
 		return this.phone;
 	}
 
-	public Integer getIndex() {
+	public int getIndex() {
 		return this.index;
+	}
+
+	public String toCSV() {
+		return String.valueOf(this.index) + ";" + this.fio + ";" + this.phone + "\n";
+	}
+
+	public void fromCSV(String str) {
+		String[] arr = str.split(";");
+		this.index = Integer.valueOf(arr[0]);
+		this.fio = arr[1];
+		this.phone = arr[2];
 	}
 }

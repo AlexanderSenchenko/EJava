@@ -2,12 +2,12 @@ package com.example;
 import com.example.User;
 
 public class Ur extends User {
+	private String snils;
+	
 	public Ur(String fio, String phone, String snils) {
 		super(fio, phone);
 		setSnils(snils);
 	}
-
-	private String snils;
 
 	public void setSnils(String snils) {
 		this.snils = snils;
