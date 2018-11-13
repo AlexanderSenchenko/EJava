@@ -14,9 +14,9 @@ public class Main {
 		phonebook.addFiz("Roflan", "789", "012");
 		phonebook.addFiz("Chelick", "234", "567");
 
-		phonebook.addUr("Sandra", "123", "456");
+		phonebook.addUr("Sandra", "789", "567");
 		phonebook.addUr("Roflan", "789", "012");
-		phonebook.addUr("Chelick", "234", "567");
+		phonebook.addUr("Chelick", "012", "789");
 
 		// try (FileReader fr = new FileReader("Fiz.csv")) {
 		// 	char[] buf = new char[256];
@@ -40,7 +40,11 @@ public class Main {
 		// 	System.out.println(error.getMessage());
 		// }
 
-		// phonebook.writeFizInFile();
+		// phonebook.printAll();
+
+		phonebook.writeFizInFile();
+
+		phonebook.writeUrInFile();
 
 		phonebook.readFizInFile();
 	}

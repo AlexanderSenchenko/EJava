@@ -2,13 +2,18 @@ package com.example;
 import com.example.CSV;
 
 public class User implements CSV {
-	private static int index = 1;
 	private String fio;
 	private String phone;
+	private int id;
 
 	public User(String fio, String phone) {
 		setFio(fio);
 		setPhone(phone);
+		
+	}
+
+	public void setId(int index) {
+		this.id = index;
 	}
 
 	public void setFio(String fio) {
@@ -28,16 +33,16 @@ public class User implements CSV {
 	}
 
 	public int getIndex() {
-		return this.index;
+		return this.id;
 	}
 
 	public String toCSV() {
-		return String.valueOf(this.index) + ";" + this.fio + ";" + this.phone + "\n";
+		return String.valueOf(this.id) + ";" + this.fio + ";" + this.phone + ";";
 	}
 
 	public void fromCSV(String str) {
 		String[] arr = str.split(";");
-		this.index = Integer.valueOf(arr[0]);
+		this.id = Integer.valueOf(arr[0]);
 		this.fio = arr[1];
 		this.phone = arr[2];
 	}

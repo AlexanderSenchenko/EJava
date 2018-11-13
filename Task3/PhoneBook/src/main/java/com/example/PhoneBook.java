@@ -40,13 +40,6 @@ public class PhoneBook {
 		return this.ur.get(i);
 	}
 
-	// public String getStringFiz(int i) {
-	// 	Fiz fiz = getFiz(i);
-	// 	String id = String.valueOf(fiz.getIndex());
-	// 	String str = id + ";" + fiz.getFio() + ";" + fiz.getPhone() + ";" + fiz.getPhone2() + "\n";
-	// 	return str;
-	// }
-
 	public void writeFizInFile() {
 		try(FileWriter fw = new FileWriter("Fiz.csv", false)) {
 			for (Fiz fiz : this.fiz) {
@@ -59,17 +52,30 @@ public class PhoneBook {
 		}
 	}
 
-	public void readFizInFile() {
-		try(FileReader fr = new FileReader("Fiz.csv")) {
-			// char[] buf = new char[256];
-			int length = fr.read();
-			System.out.println("Length=" + length);
-			// for (char c : buf) {
-			// 	System.out.print(c);
-			// }
-			fr.close();
+	public void writeUrInFile() {
+		try(FileWriter fw = new FileWriter("Ur.csv", false)) {
+			for (Ur ur : this.ur) {
+				String str = ur.toCSV();
+				fw.write(str);
+			}
+			fw.close();
 		} catch(IOException error) {
 			System.out.println(error.getMessage());
+		}
+	}
+
+	public void readFizInFile() {
+		try {
+			FileInputStream fr = new FileInputStream("Fiz.csv");
+			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
+			String str;
+			
+			while ((str = br.readLine()) != null) {
+				System.out.println(str);
+				
+			}
+		} catch (IOException error){
+			System.out.println("Error");
 		}
 	}
 
