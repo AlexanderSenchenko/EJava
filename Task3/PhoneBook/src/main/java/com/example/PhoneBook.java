@@ -15,12 +15,14 @@ public class PhoneBook {
 	}
 
 	public void addFiz(String fio, String phone1, String phone2) {
-		Fiz fiz = new Fiz(fio, phone1, phone2);
+		Fiz fiz = new Fiz();
+		fiz.initFiz(fio, phone1, phone2);
 		this.fiz.add(fiz);
 	}
 
 	public void addUr(String fio, String phone, String snils) {
-		Ur ur = new Ur(fio, phone, snils);
+		Ur ur = new Ur();
+		ur.initUr(fio, phone, snils);
 		this.ur.add(ur);
 	}
 
@@ -64,17 +66,34 @@ public class PhoneBook {
 		}
 	}
 
-	public void readFizInFile() {
+	public void readFizFromFile() {
 		try {
 			FileInputStream fr = new FileInputStream("Fiz.csv");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
 			String str;
 			
 			while ((str = br.readLine()) != null) {
-				System.out.println(str);
-				
+				Fiz fiz = new Fiz();
+				fiz.fromCSV(str);
+				this.fiz.add(fiz);
 			}
 		} catch (IOException error){
+			System.out.println("Error");
+		}
+	}
+
+	public void readUrFromFile() {
+		try {
+			FileInputStream fr = new FileInputStream("Ur.csv");
+			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
+			String str;
+
+			while ((str = br.readLine()) != null) {
+				Ur ur = new Ur();
+				ur.fromCSV(str);
+				this.ur.add(ur);
+			}
+		} catch (IOException error) {
 			System.out.println("Error");
 		}
 	}

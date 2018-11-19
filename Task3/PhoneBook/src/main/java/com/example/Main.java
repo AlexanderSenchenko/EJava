@@ -13,40 +13,22 @@ public class Main {
 		phonebook.addFiz("Sandra", "123", "456");
 		phonebook.addFiz("Roflan", "789", "012");
 		phonebook.addFiz("Chelick", "234", "567");
+		phonebook.addFiz("Misha", "1", "1");
 
-		phonebook.addUr("Sandra", "789", "567");
-		phonebook.addUr("Roflan", "789", "012");
-		phonebook.addUr("Chelick", "012", "789");
-
-		// try (FileReader fr = new FileReader("Fiz.csv")) {
-		// 	char[] buf = new char[256];
-		// 	String str = "";
-		// 	ArrayList<String> strings = new ArrayList<String>();
-		// 	int line = fr.read(buf);
-
-		// 	for (int i = 0; i < line && buf[i] != '\n'; i++) {
-		// 		str += buf[i];
-		// 	}
-		// 	strings.add(str);
-
-		// 	System.out.println("Line: " + line);
-		// 	System.out.println("String: " + str);
-		// 	// System.out.print("String: ");
-		// 	// for (char a : buf) {
-		// 	// 	System.out.print(a);
-		// 	// }
-		// 	fr.close();
-		// } catch (IOException error) {
-		// 	System.out.println(error.getMessage());
-		// }
+		// phonebook.addUr("Sandra", "789", "567");
+		// phonebook.addUr("Roflan", "789", "012");
+		// phonebook.addUr("Chelick", "012", "789");
 
 		// phonebook.printAll();
 
 		phonebook.writeFizInFile();
 
-		phonebook.writeUrInFile();
+		// phonebook.writeUrInFile();
 
-		phonebook.readFizInFile();
+		// phonebook.readFizFromFile();
+		// phonebook.readUrFromFile();
+
+		// phonebook.printAll();
 	}
 
 	static void testTime() {

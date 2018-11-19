@@ -5,8 +5,12 @@ public class Fiz extends User {
 	private static int index = 1;
 	private String phone2;
 
-	public Fiz(String fio, String phone1, String phone2) {
-		super(fio, phone1);
+	public Fiz() {
+
+	}
+
+	public void initFiz(String fio, String phone1, String phone2) {
+		initUser(fio, phone1);
 		setPhone2(phone2);
 		setId(index++);
 	}

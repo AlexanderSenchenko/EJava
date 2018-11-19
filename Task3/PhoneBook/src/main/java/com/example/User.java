@@ -6,10 +6,13 @@ public class User implements CSV {
 	private String phone;
 	private int id;
 
-	public User(String fio, String phone) {
+	public User() {
+
+	}
+
+	public void initUser(String fio, String phone) {
 		setFio(fio);
 		setPhone(phone);
-		
 	}
 
 	public void setId(int index) {
