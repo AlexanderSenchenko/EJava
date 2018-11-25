@@ -2,18 +2,21 @@ package com.example;
 
 import java.util.*;
 import java.io.*;
+import java.sql.*;
 import com.example.PhoneBook;
-// import com.example.User;
 
 public class Main {
 
-	public static void main(String[] args) {	
-		PhoneBook phonebook = new PhoneBook();
+	private static final String user = "root";
+	private static final String password = "";
 
-		phonebook.addFiz("Sandra", "123", "456");
-		phonebook.addFiz("Roflan", "789", "012");
-		phonebook.addFiz("Chelick", "234", "567");
-		phonebook.addFiz("Misha", "1", "1");
+	public static void main(String[] args) {
+		// PhoneBook phonebook = new PhoneBook();
+
+		// phonebook.addFiz("Sandra", "123", "456");
+		// phonebook.addFiz("Roflan", "789", "012");
+		// phonebook.addFiz("Chelick", "234", "567");
+		// phonebook.addFiz("Misha", "1", "1");
 
 		// phonebook.addUr("Sandra", "789", "567");
 		// phonebook.addUr("Roflan", "789", "012");
@@ -21,7 +24,7 @@ public class Main {
 
 		// phonebook.printAll();
 
-		phonebook.writeFizInFile();
+		// phonebook.writeFizInFile();
 
 		// phonebook.writeUrInFile();
 
@@ -29,6 +32,22 @@ public class Main {
 		// phonebook.readUrFromFile();
 
 		// phonebook.printAll();
+
+		String url = "jdbc:mysql://localhost:3306/eltex";
+
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			Statement st = con.createStatement();
+			String query = "SELECT * FROM user";
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()) {
+				String fio = rs.getString("fio");
+				System.out.println(fio);
+			}
+			System.out.println("Success");
+		} catch(SQLException error) {
+			error.printStackTrace();
+		}
 	}
 
 	static void testTime() {
