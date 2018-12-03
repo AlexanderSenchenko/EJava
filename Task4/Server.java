@@ -1,19 +1,46 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
-
+import java.lang.Thread;
 
 public class Server {
+	private static ServerSocket socket;
 	public static void main(String[] args) {
 		try {
-			ServerSocket socket = new ServerSocket(4004);
-			System.out.println("Server started");
+			try {
+				socket = new ServerSocket(4004);
+				System.out.println("Server started");
 
-			Socket client = socket.accept();
-			System.out.println("Client connected");
+				while (true) {
+					Socket client = socket.accept();
+					System.out.println("Client connected");
 
-			InputStream inStream = client.getInputStream();
-			OutputStream outStream = client.getOutputStream();
+					Runnable r = new MyRun(client);
+
+					Thread t = new Thread(r);
+					t.start();
+				}
+			} finally {
+				System.out.println("Server closed");
+				socket.close();
+			}
+		} catch(IOException error) {
+			System.err.println(error);
+		}
+	}
+}
+
+class MyRun implements Runnable {
+	private Socket client;
+
+	public MyRun(Socket client) {
+		this.client = client;
+	}
+
+	public void run() {
+		try {
+			InputStream inStream = this.client.getInputStream();
+			OutputStream outStream = this.client.getOutputStream();
 
 			Scanner in = new Scanner(inStream);
 			PrintWriter out = new PrintWriter(outStream);
@@ -24,12 +51,13 @@ public class Server {
 			out.write("Hello, client\n");
 			out.flush();
 
-			client.close();
+			try{
+				Thread.sleep(100000);
+			} catch(InterruptedException e){}
+
+			this.client.close();
 			in.close();
 			out.close();
-
-			System.out.println("Server closed");
-			socket.close();
 		} catch(IOException error) {
 			System.err.println(error);
 		}
