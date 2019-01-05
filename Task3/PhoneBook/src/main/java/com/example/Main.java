@@ -5,52 +5,18 @@ import java.io.*;
 import java.sql.*;
 import com.example.PhoneBook;
 
-public class Main {
-
-	private static final String user = "root";
-	private static final String password = "";
-
-	public static void main(String[] args) {
-		// PhoneBook phonebook = new PhoneBook();
-
-		// phonebook.addFiz("Sandra", "123", "456");
-		// phonebook.addFiz("Roflan", "789", "012");
-		// phonebook.addFiz("Chelick", "234", "567");
-		// phonebook.addFiz("Misha", "1", "1");
-
-		// phonebook.addUr("Sandra", "789", "567");
-		// phonebook.addUr("Roflan", "789", "012");
-		// phonebook.addUr("Chelick", "012", "789");
-
-		// phonebook.printAll();
-
-		// phonebook.writeFizInFile();
-
-		// phonebook.writeUrInFile();
-
-		// phonebook.readFizFromFile();
-		// phonebook.readUrFromFile();
-
-		// phonebook.printAll();
-
-		String url = "jdbc:mysql://localhost:3306/eltex";
-
-		try {
-			Connection con = DriverManager.getConnection(url, user, password);
-			Statement st = con.createStatement();
-			String query = "SELECT * FROM user";
-			ResultSet rs = st.executeQuery(query);
-			while (rs.next()) {
-				String fio = rs.getString("fio");
-				System.out.println(fio);
-			}
-			System.out.println("Success");
-		} catch(SQLException error) {
-			error.printStackTrace();
-		}
+public class Main
+{
+	public static void main(String[] args)
+	{
+		testAddUser();
+		
+		// testMySQL();
+		
 	}
 
-	static void testTime() {
+	static void testTime()
+	{
 		LinkedList<String> list = new LinkedList<String>();
 		ArrayList<String> arr = new ArrayList<String>();
 		TreeSet<String> tree = new TreeSet<String>();
@@ -96,6 +62,53 @@ public class Main {
 		System.out.println("t(list remove) = " + t_list_remove);
 		System.out.println("t(arr  remove) = " + t_arr_remove);
 		System.out.println("t(tree remove) = " + t_tree_remove);
+	}
 
+	static void testAddUser()
+	{
+		PhoneBook phonebook = new PhoneBook();
+		PhoneBook phonebook2 = new PhoneBook();
+
+		phonebook.addFiz("Sandra", "123", "456");
+		phonebook.addFiz("Roflan", "789", "012");
+		phonebook.addFiz("Chelick", "234", "567");
+		phonebook.addFiz("Misha", "1", "1");
+
+		phonebook.addUr("Sandra", "789", "567");
+		phonebook.addUr("Roflan", "789", "012");
+		phonebook.addUr("Chelick", "012", "789");
+
+		phonebook.printAll();
+
+		phonebook.writeFizInFile();
+
+		phonebook.writeUrInFile();
+
+		phonebook2.readFizFromFile();
+		phonebook2.readUrFromFile();
+
+		phonebook2.printAll();
+	}
+
+	static void testMySQL()
+	{
+		String user = "root";
+		String password = "65roguri";
+		String url = "jdbc:mysql://localhost:3306/eltex";
+
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			Statement st = con.createStatement();
+			
+			String query = "SELECT * FROM user";
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()) {
+				String fio = rs.getString("fio");
+				System.out.println(fio);
+			}
+			System.out.println("Success");
+		} catch(SQLException error) {
+			error.printStackTrace();
+		}
 	}
 }

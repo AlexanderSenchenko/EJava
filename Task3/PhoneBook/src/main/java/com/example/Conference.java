@@ -1,8 +1,10 @@
 package com.example;
 
-public class Conference {
+public class Conference
+{
 
-	public Conference() {
+	public Conference()
+	{
 		
 	}
 }

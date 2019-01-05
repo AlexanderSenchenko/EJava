@@ -1,6 +1,7 @@
 package com.example;
 
-public interface CSV {
+public interface CSV
+{
 	String toCSV();
 	void fromCSV(String str);
 }

@@ -5,44 +5,53 @@ import java.io.*;
 import com.example.Fiz;
 import com.example.Ur;
 
-public class PhoneBook {
+public class PhoneBook
+{
 	private ArrayList<Fiz> fiz;
 	private ArrayList<Ur> ur;
 
-	public PhoneBook() {
+	public PhoneBook()
+	{
 		this.fiz = new ArrayList<Fiz>();
 		this.ur = new ArrayList<Ur>();
 	}
 
-	public void addFiz(String fio, String phone1, String phone2) {
-		Fiz fiz = new Fiz();
-		fiz.initFiz(fio, phone1, phone2);
+	public void addFiz(String fio, String phone1, String phone2)
+	{
+		Fiz fiz = new Fiz(fio, phone1, phone2);
+		// fiz.initFiz(fio, phone1, phone2);
 		this.fiz.add(fiz);
 	}
 
-	public void addUr(String fio, String phone, String snils) {
-		Ur ur = new Ur();
-		ur.initUr(fio, phone, snils);
+	public void addUr(String fio, String phone, String snils)
+	{
+		Ur ur = new Ur(fio, phone, snils);
+		// ur.initUr(fio, phone, snils);
 		this.ur.add(ur);
 	}
 
-	public int getCountFiz() {
+	public int getCountFiz()
+	{
 		return this.fiz.size();
 	}
 
-	public int getCountUr() {
+	public int getCountUr()
+	{
 		return this.ur.size();
 	}
 
-	private Fiz getFiz(int i) {
+	private Fiz getFiz(int i)
+	{
 		return this.fiz.get(i);
 	}
 
-	private Ur getUr(int i) {
+	private Ur getUr(int i)
+	{
 		return this.ur.get(i);
 	}
 
-	public void writeFizInFile() {
+	public void writeFizInFile()
+	{
 		try(FileWriter fw = new FileWriter("Fiz.csv", false)) {
 			for (Fiz fiz : this.fiz) {
 				String str = fiz.toCSV();
@@ -54,7 +63,8 @@ public class PhoneBook {
 		}
 	}
 
-	public void writeUrInFile() {
+	public void writeUrInFile()
+	{
 		try(FileWriter fw = new FileWriter("Ur.csv", false)) {
 			for (Ur ur : this.ur) {
 				String str = ur.toCSV();
@@ -66,12 +76,13 @@ public class PhoneBook {
 		}
 	}
 
-	public void readFizFromFile() {
+	public void readFizFromFile()
+	{
 		try {
 			FileInputStream fr = new FileInputStream("Fiz.csv");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
 			String str;
-			
+
 			while ((str = br.readLine()) != null) {
 				Fiz fiz = new Fiz();
 				fiz.fromCSV(str);
@@ -82,7 +93,8 @@ public class PhoneBook {
 		}
 	}
 
-	public void readUrFromFile() {
+	public void readUrFromFile()
+	{
 		try {
 			FileInputStream fr = new FileInputStream("Ur.csv");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
