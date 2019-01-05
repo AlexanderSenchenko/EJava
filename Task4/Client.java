@@ -5,12 +5,12 @@ import java.util.*;
 public class Client {
 	public static void main(String[] args) {
 		try {
-			Socket socket = new Socket("localhost", 4004);
+			Socket clientSocket = new Socket("localhost", 4004);
 
-			InputStream inStream = socket.getInputStream();
-			OutputStream outStream = socket.getOutputStream();
-
+			InputStream inStream = clientSocket.getInputStream();
 			Scanner in = new Scanner(inStream);
+
+			OutputStream outStream = clientSocket.getOutputStream();
 			PrintWriter out = new PrintWriter(outStream);
 
 			out.write("Hello, server\n");
@@ -19,7 +19,7 @@ public class Client {
 			String recvMsg = in.nextLine();
 			System.out.println(recvMsg);
 			
-			socket.close();
+			clientSocket.close();
 			in.close();
 			out.close();
 		} catch(IOException error) {

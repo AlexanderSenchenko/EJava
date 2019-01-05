@@ -3,26 +3,29 @@ import java.io.*;
 import java.util.*;
 import java.lang.Thread;
 
-public class Server {
-	private static ServerSocket socket;
-	public static void main(String[] args) {
+public class Server
+{
+	private static ServerSocket serverSocket;
+	
+	public static void main(String[] args)
+	{
 		try {
 			try {
-				socket = new ServerSocket(4004);
+				serverSocket = new ServerSocket(4004);
 				System.out.println("Server started");
 
 				while (true) {
-					Socket client = socket.accept();
+					Socket clientSocket = serverSocket.accept();
 					System.out.println("Client connected");
 
-					Runnable r = new MyRun(client);
+					Runnable run = new MyRun(clientSocket);
 
-					Thread t = new Thread(r);
-					t.start();
+					Thread thread = new Thread(run);
+					thread.start();
 				}
 			} finally {
 				System.out.println("Server closed");
-				socket.close();
+				serverSocket.close();
 			}
 		} catch(IOException error) {
 			System.err.println(error);
@@ -30,32 +33,37 @@ public class Server {
 	}
 }
 
-class MyRun implements Runnable {
-	private Socket client;
+class MyRun implements Runnable
+{
+	private Socket clientSocket;
 
-	public MyRun(Socket client) {
-		this.client = client;
+	public MyRun(Socket clientSocket)
+	{
+		this.clientSocket = clientSocket;
 	}
 
-	public void run() {
+	public void run()
+	{
 		try {
-			InputStream inStream = this.client.getInputStream();
-			OutputStream outStream = this.client.getOutputStream();
-
+			InputStream inStream = this.clientSocket.getInputStream();
 			Scanner in = new Scanner(inStream);
-			PrintWriter out = new PrintWriter(outStream);
+			
+			OutputStream outStream = this.clientSocket.getOutputStream();
+			OutputStreamWriter out = new OutputStreamWriter(outStream);
 
 			String recvMsg = in.nextLine();
 			System.out.println(recvMsg);
 
-			out.write("Hello, client\n");
+			// out.write(
+			// 	"HTTP/1.0 200 OK\r\n" +
+			// 	"Content-type: text/html\r\n" +
+			// 	"\r\n" +
+			// 	"<h2>Hello</h2>\r\n");
+			out.write("Hello\r\n");
 			out.flush();
 
-			try{
-				Thread.sleep(100000);
-			} catch(InterruptedException e){}
-
-			this.client.close();
+			this.clientSocket.close();
+			System.out.println("Client closed");
 			in.close();
 			out.close();
 		} catch(IOException error) {
