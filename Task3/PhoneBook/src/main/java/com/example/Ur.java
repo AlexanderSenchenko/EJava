@@ -1,5 +1,4 @@
 package com.example;
-// import com.example.User;
 
 public class Ur extends User
 {
@@ -14,13 +13,6 @@ public class Ur extends User
 	}
 
 	public Ur() {}
-
-	// public void initUr(String fio, String phone, String snils)
-	// {
-	// 	initUser(fio, phone);
-	// 	setSnils(snils);
-	// 	setId(index++);
-	// }
 
 	public void setSnils(String snils)
 	{

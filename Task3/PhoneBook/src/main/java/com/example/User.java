@@ -1,5 +1,4 @@
 package com.example;
-import com.example.CSV;
 
 public class User implements CSV
 {
@@ -14,12 +13,6 @@ public class User implements CSV
 	}
 
 	public User() {}
-
-	// public void initUser(String fio, String phone)
-	// {
-	// 	setFio(fio);
-	// 	setPhone(phone);
-	// }
 
 	public void setId(int index)
 	{

@@ -1,5 +1,4 @@
 package com.example;
-import com.example.User;
 
 public class Fiz extends User
 {
@@ -14,13 +13,6 @@ public class Fiz extends User
 	}
 
 	public Fiz() {}
-
-	// public void initFiz(String fio, String phone1, String phone2)
-	// {
-	// 	initUser(fio, phone1);
-	// 	setPhone2(phone2);
-	// 	setId(index++);
-	// }
 
 	public void setPhone2(String phone2)
 	{
