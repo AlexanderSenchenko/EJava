@@ -12,9 +12,9 @@ public class Main
 		
 		// testMySQL();
 		
-		testCalls();
+		// testCalls();
 
-		// testConference();
+		testConference();
 	}
 
 	public static void testTime()
@@ -98,8 +98,12 @@ public class Main
 	public static void testMySQL()
 	{
 		String user = "root";
-		String password = "65roguri";
+		String password = "";
 		String url = "jdbc:mysql://localhost:3306/eltex";
+
+		Scanner in = new Scanner(System.in);
+		password = in.next();
+		in.close();
 
 		try
 		{
@@ -158,7 +162,7 @@ public class Main
 	public static void testConference()
 	{
 		PhoneBook phonebook = new PhoneBook();
-		// PhoneBook phonebook2 = new PhoneBook();
+		PhoneBook phonebook2 = new PhoneBook();
 
 		phonebook.addFiz("a", "00", "00");
 		phonebook.addFiz("b", "01", "01");
@@ -176,23 +180,24 @@ public class Main
 
 		phonebook.writeUrInFile();
 
-		ArrayList<User> conf1 = new ArrayList<User>();
-		conf1.add(phonebook.getFiz(0));
-		conf1.add(phonebook.getFiz(1));
-		conf1.add(phonebook.getFiz(2));
+		ArrayList<String> conf1 = new ArrayList<String>();
+		conf1.add(phonebook.getFiz(0).getFio());
+		conf1.add(phonebook.getFiz(1).getFio());
+		conf1.add(phonebook.getFiz(2).getFio());
 		phonebook.addConference(conf1, 10);
 
-		// phonebook.addCall(phonebook.getFiz(0), phonebook.getFiz(1), 10);
-		// phonebook.addCall(phonebook.getFiz(2), phonebook.getFiz(3), 10);
-		// phonebook.addCall(phonebook.getFiz(2), phonebook.getFiz(1), 1, 30);
-		// phonebook.addCall(phonebook.getFiz(0), phonebook.getFiz(3), 1, 1, 30);
+		ArrayList<String> conf2 = new ArrayList<String>();
+		conf2.add(phonebook.getUr(0).getFio());
+		conf2.add(phonebook.getFiz(3).getFio());
+		conf2.add(phonebook.getUr(2).getFio());
+		phonebook.addConference(conf2, 2, 10);
 
-		// phonebook.printAllCalls();
+		phonebook.printAllConference();
 
-		// phonebook.writeCallsInFile();
+		phonebook.writeConferenceInFile();
 
-		// phonebook2.readCallsFromFile();
-
-		// phonebook.printAllCalls();
+		phonebook2.readConferenceFromFile();
+	
+		phonebook2.printAllConference();
 	}
 }

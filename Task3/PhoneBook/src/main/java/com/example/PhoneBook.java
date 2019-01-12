@@ -19,6 +19,7 @@ public class PhoneBook
 		this.fiz = new ArrayList<Fiz>();
 		this.ur = new ArrayList<Ur>();
 		this.calls = new ArrayList<Calls>();
+		this.conference = new ArrayList<Conference>();
 	}
 
 	public void addFiz(String fio, String phone1, String phone2)
@@ -254,11 +255,74 @@ public class PhoneBook
 		System.out.println();
 	}
 
-	public void addConference(ArrayList<User> users, int sec)
+	public void addConference(ArrayList<String> users, int sec)
 	{
-		// Conference conf = new Conference(users, sec);
-		// this.conference.add(conf);
-		System.out.println(users.get(0).getFio());
-		System.out.println(users.get(1).getFio());
+		Conference conf = new Conference(users, sec);
+		this.conference.add(conf);
+	}
+
+	public void addConference(ArrayList<String> users, int min, int sec)
+	{
+		addConference(users, (min * 60) + sec);
+	}
+
+	public void addConference(ArrayList<String> users,
+								int hours, int min, int sec)
+	{
+		addConference(users, (hours * 60 * 60) + (min * 60) + sec);
+	}
+
+	public void printAllConference()
+	{
+		System.out.println("Conference");
+		System.out.println("Users\tTime (sec.)");
+		for (Conference conf : this.conference)
+		{
+			System.out.print(conf.toStringUsers() + "\t");
+			System.out.println(conf.getTime());
+		}
+		System.out.println();
+	}
+
+	public void writeConferenceInFile()
+	{
+		try(FileWriter fw = new FileWriter("Conference.csv", false))
+		{
+			for (Conference conf : this.conference)
+			{
+				String str = conf.toCSV();
+				fw.write(str);
+			}
+			fw.close();
+		}
+		catch(IOException error)
+		{
+			System.out.println(error.getMessage());
+		}
+	}
+
+	public void readConferenceFromFile()
+	{
+		try
+		{
+			FileInputStream fr = new FileInputStream("Conference.csv");
+			BufferedReader br = new BufferedReader(new InputStreamReader(fr));
+			String str;
+
+			while ((str = br.readLine()) != null)
+			{
+				Conference conf = new Conference();
+				conf.fromCSV(str);
+				/*
+				* Возможно что такого пользователя не будет в массивах
+				* но об этом как-нибудь потом
+				*/
+				this.conference.add(conf);
+			}
+		}
+		catch (IOException error)
+		{
+			System.out.println("Error");
+		}
 	}
 }
