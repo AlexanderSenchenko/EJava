@@ -1,2 +1,12 @@
-list_dz.txt
-*.sh
+build/
+gradle/
+out/
+gradlew
+
+.gradle
+
+*.idea
+
+*.txt
+
+*.class
