@@ -8,13 +8,13 @@ public class Main
 {
 	public static void main(String[] args)
 	{
-		// testAddUser();
+		testAddUser();
 		
 		// testMySQL();
 		
 		// testCalls();
 
-		testConference();
+		// testConference();
 	}
 
 	public static void testTime()
@@ -97,27 +97,102 @@ public class Main
 
 	public static void testMySQL()
 	{
+		PhoneBook phonebook = new PhoneBook();
+
 		String user = "root";
 		String password = "";
 		String url = "jdbc:mysql://localhost:3306/eltex";
 
-		Scanner in = new Scanner(System.in);
-		password = in.next();
-		in.close();
+		// System.out.print("Input password: ");
+		// Scanner in = new Scanner(System.in);
+		// password = in.next();
+		// in.close();
 
 		try
 		{
 			Connection con = DriverManager.getConnection(url, user, password);
 			Statement st = con.createStatement();
-			
+
+			/**
+			*	SHOW DATABASES;
+			*	CREATE DATABASE "name DB";
+			*	USE "name database";
+			*	SELECT DATABASE(); - текущая база
+			*	
+			*	SHOW TABLES;
+			*	CREATE TABLE "name" ("name column" тип, "name column" тип, ...);
+			*	DESCRIBE "name tables";
+			*	
+			*	INSERT INTO "name" VALUES ('column1', 'column2', ...);
+			*	INSERT INTO "name" VALUE ();
+			*	
+			*	SELECT "what or '*'" FROM "tables name";
+			*	SELECT "what or '*'" FROM "tables name" WHERE;
+			*	
+			*	DELETE FROM "table name" WHERE "column"="value";
+			*	
+			*	UPDATE "name table" SET "column"="value", ... ;
+			*	UPDATE "name table" SET "column"="value" WHERE "id=3";
+			**/
+
 			String query = "SELECT * FROM user";
 			ResultSet rs = st.executeQuery(query);
+			System.out.println("Table: user");
 			while (rs.next())
 			{
 				String fio = rs.getString("fio");
 				System.out.println(fio);
 			}
-			System.out.println("Success");
+			System.out.println();
+
+			System.out.println("Insert");			
+			String insert = "INSERT INTO user VALUES ('3', 'test1', '123');";
+			st.execute(insert);
+
+			rs = st.executeQuery(query);
+			System.out.println("Table: user");
+			while (rs.next())
+			{
+				String fio = rs.getString("fio");
+				System.out.println(fio);
+			}
+			System.out.println();
+
+			System.out.println("Delete");
+			String delete = "DELETE FROM user WHERE id=3;";
+			st.execute(delete);
+
+			rs = st.executeQuery(query);
+			System.out.println("Table: user");
+			while (rs.next())
+			{
+				String fio = rs.getString("fio");
+				System.out.println(fio);
+			}
+			System.out.println();
+
+			String query2 = query + " WHERE id>0";
+			rs = st.executeQuery(query2);
+			while (rs.next())
+			{
+				String id = rs.getString("id");
+				System.out.println(id);
+			}
+			System.out.println();
+
+			System.out.println("Update");
+			String update = "UPDATE user SET fio='test2' WHERE id=1;";
+			st.execute(update);
+
+			rs = st.executeQuery(query);
+			System.out.println("Table: user");
+			while (rs.next())
+			{
+				String fio = rs.getString("fio");
+				System.out.println(fio);
+			}
+			System.out.println();
+
 		}
 		catch(SQLException error)
 		{

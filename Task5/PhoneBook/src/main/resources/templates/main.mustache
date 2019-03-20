@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <!--<div>-->
+        <!--<form method="post">-->
+            <!--&lt;!&ndash;<input type="text" name="userType" placeholder="User" />&ndash;&gt;-->
+            <!--<input type="text" name="fio" placeholder="Fio" />-->
+            <!--<input type="text" name="phone" placeholder="Phone" />-->
+            <!--<input type="text" name="phone_snils" placeholder="Phone or snils" />-->
+            <!--<button type="submit">Add</button>-->
+        <!--</form>-->
+    <!--</div>-->
+    <div>List users</div>
+    {{#users}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{fio}}</span>
+            <span>{{phone}}</span>
+        </div>
+    {{/users}}
+    {{#fiz}}
+        <div>
+            <i>{{id}}</i>
+            <span>{{fio}}</span>
+            <span>{{phone}}</span>
+            <span>{{phone2}}</span>
+        </div>
+    {{/fiz}}
+    {{#messages}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{text}}</span>
+        </div>
+    {{/messages}}
+    <div>{{soom}}</div>
+</body>
+</html>

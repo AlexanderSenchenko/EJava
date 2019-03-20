@@ -1,9 +1,15 @@
-apply plugin: "java"
-apply plugin: "application"
-mainClassName="com.example.Main"
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName='com.example.Main'
+
 task wrapper(type:Wrapper) {
-	gradleVersion="4.10.2"
+	gradleVersion='4.10.2'
 }
+
 dependencies {
-	compile files("libs/mysql-connector-java-8.0.13.jar")
+	compile files('libs/mysql-connector-java-8.0.13.jar')
+}
+
+run {
+	standardInput = System.in
 }
