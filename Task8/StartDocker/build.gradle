@@ -10,7 +10,7 @@ apply plugin: 'application'
 group 'BravoCI'
 version '1.0-SNAPSHOT'
 
-mainClassName='StartDocker.Main'
+mainClassName='ru.eltex.StartDocker.Main'
 
 sourceCompatibility = 1.8
 

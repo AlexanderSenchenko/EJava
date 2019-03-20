@@ -1,4 +1,4 @@
-package StartDocker;
+package ru.eltex.StartDocker;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.model.Container;
