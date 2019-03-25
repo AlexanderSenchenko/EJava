@@ -1,6 +1,7 @@
 build/
 gradle/
 out/
+target/
 gradlew
 
 .gradle
