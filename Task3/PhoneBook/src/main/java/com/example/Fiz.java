@@ -36,4 +36,16 @@ public class Fiz extends User
 		String[] arr = str.split(";");
 		this.phone2 = arr[3];
 	}
+
+	public String addFizToBD()
+	{
+		// "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');"
+//		String insert = "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');";
+//		insert += Integer.toString();
+
+		String insert = super.addUserToDB();
+		insert += this.phone2 += "');";
+
+		return insert;
+	}
 }

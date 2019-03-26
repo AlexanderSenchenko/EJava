@@ -56,4 +56,17 @@ public class User implements CSV
 		this.fio = arr[1];
 		this.phone = arr[2];
 	}
+
+	public String addUserToDB()
+	{
+	// "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');"
+		String insert = "INSERT INTO fiz VALUES ('";
+		insert += Integer.toString(this.id) + "', '";
+		insert += this.fio + "', '";
+		insert += this.phone + "', '";
+
+		return insert;
+	}
+
+	
 }

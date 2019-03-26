@@ -1,16 +1,25 @@
 package com.example;
 
-import java.util.*;
-import java.io.*;
-import java.sql.*;
+//import java.util.*;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+//import java.io.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Main
 {
 	public static void main(String[] args)
 	{
-		testAddUser();
+		// testAddUser();
 		
-		// testMySQL();
+		testMySQL();
 		
 		// testCalls();
 
@@ -97,11 +106,13 @@ public class Main
 
 	public static void testMySQL()
 	{
-		PhoneBook phonebook = new PhoneBook();
+		PhoneBook phoneBook = new PhoneBook();
+
+		Fiz fiz = new Fiz("Sandra", "123", "456");
 
 		String user = "root";
-		String password = "";
-		String url = "jdbc:mysql://localhost:3306/eltex";
+		String password = "65roguri";
+		String url = "jdbc:mysql://localhost:3306/phone_book";
 
 		// System.out.print("Input password: ");
 		// Scanner in = new Scanner(System.in);
@@ -135,9 +146,9 @@ public class Main
 			*	UPDATE "name table" SET "column"="value" WHERE "id=3";
 			**/
 
-			String query = "SELECT * FROM user";
+			String query = "SELECT * FROM fiz";
 			ResultSet rs = st.executeQuery(query);
-			System.out.println("Table: user");
+			System.out.println("Table: fiz");
 			while (rs.next())
 			{
 				String fio = rs.getString("fio");
@@ -146,11 +157,11 @@ public class Main
 			System.out.println();
 
 			System.out.println("Insert");			
-			String insert = "INSERT INTO user VALUES ('3', 'test1', '123');";
+			String insert = fiz.addFizToBD();
 			st.execute(insert);
 
 			rs = st.executeQuery(query);
-			System.out.println("Table: user");
+			System.out.println("Table: fiz");
 			while (rs.next())
 			{
 				String fio = rs.getString("fio");
@@ -159,11 +170,11 @@ public class Main
 			System.out.println();
 
 			System.out.println("Delete");
-			String delete = "DELETE FROM user WHERE id=3;";
+			String delete = "DELETE FROM fiz WHERE id=3;";
 			st.execute(delete);
 
 			rs = st.executeQuery(query);
-			System.out.println("Table: user");
+			System.out.println("Table: fiz");
 			while (rs.next())
 			{
 				String fio = rs.getString("fio");
@@ -180,18 +191,18 @@ public class Main
 			}
 			System.out.println();
 
-			System.out.println("Update");
-			String update = "UPDATE user SET fio='test2' WHERE id=1;";
-			st.execute(update);
+			// System.out.println("Update");
+			// String update = "UPDATE fiz SET fio='test2' WHERE id=1;";
+			// st.execute(update);
 
-			rs = st.executeQuery(query);
-			System.out.println("Table: user");
-			while (rs.next())
-			{
-				String fio = rs.getString("fio");
-				System.out.println(fio);
-			}
-			System.out.println();
+			// rs = st.executeQuery(query);
+			// System.out.println("Table: fiz");
+			// while (rs.next())
+			// {
+			// 	String fio = rs.getString("fio");
+			// 	System.out.println(fio);
+			// }
+			// System.out.println();
 
 		}
 		catch(SQLException error)
