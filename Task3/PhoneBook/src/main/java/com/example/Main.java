@@ -157,7 +157,7 @@ public class Main
 			System.out.println();
 
 			System.out.println("Insert");			
-			String insert = fiz.addFizToBD();
+			String insert = fiz.addFizToDb();
 			st.execute(insert);
 
 			rs = st.executeQuery(query);
@@ -170,7 +170,12 @@ public class Main
 			System.out.println();
 
 			System.out.println("Delete");
-			String delete = "DELETE FROM fiz WHERE id=3;";
+			String delete = fiz.delFizFromDbById();
+//			String delete = fiz.delFizFromDbByFio();
+//
+//			String delete = fiz.delFizFromDbByPhone1();
+
+//			String delete = fiz.delFizFromDbByPhone2();
 			st.execute(delete);
 
 			rs = st.executeQuery(query);

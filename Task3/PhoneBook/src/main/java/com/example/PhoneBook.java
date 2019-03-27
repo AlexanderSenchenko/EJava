@@ -267,8 +267,7 @@ public class PhoneBook
 		addConference(users, (min * 60) + sec);
 	}
 
-	public void addConference(ArrayList<String> users,
-								int hours, int min, int sec)
+	public void addConference(ArrayList<String> users, int hours, int min, int sec)
 	{
 		addConference(users, (hours * 60 * 60) + (min * 60) + sec);
 	}

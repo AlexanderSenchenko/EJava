@@ -57,16 +57,21 @@ public class User implements CSV
 		this.phone = arr[2];
 	}
 
-	public String addUserToDB()
+	public String addUserToDb(String nameTable)
 	{
-	// "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');"
-		String insert = "INSERT INTO fiz VALUES ('";
-		insert += Integer.toString(this.id) + "', '";
+		String insert = "INSERT INTO ";
+		insert += nameTable + " VALUES ('";
+		insert += String.valueOf(this.id) + "', '";
 		insert += this.fio + "', '";
 		insert += this.phone + "', '";
 
 		return insert;
 	}
 
-	
+//	public String delUserFromDbById(String nameTable, int id)
+//	{
+//		String delete = "DELETE FROM fiz ";
+//
+//		return delete;
+//	}
 }

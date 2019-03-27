@@ -37,15 +37,31 @@ public class Fiz extends User
 		this.phone2 = arr[3];
 	}
 
-	public String addFizToBD()
+	public String addFizToDb()
 	{
-		// "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');"
-//		String insert = "INSERT INTO fiz VALUES ('3', 'test1', '123', '456');";
-//		insert += Integer.toString();
-
-		String insert = super.addUserToDB();
+		String insert = super.addUserToDb("fiz");
 		insert += this.phone2 += "');";
 
 		return insert;
+	}
+
+	public String delFizFromDbById()
+	{
+		return "DELETE FROM fiz WHERE id=" + String.valueOf(getIndex()) + ";";
+	}
+
+	public String delFizFromDbByFio()
+	{
+		return "DELETE FROM fiz WHERE fio='" + getFio() + "';";
+	}
+
+	public String delFizFromDbByPhone1()
+	{
+		return "DELETE FROM fiz WHERE phone1=" + getPhone() + ";";
+	}
+
+	public String delFizFromDbByPhone2()
+	{
+		return "DELETE FROM fiz WHERE phone2=" + this.phone2 + ";";
 	}
 }
