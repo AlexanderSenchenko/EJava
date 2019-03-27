@@ -124,27 +124,29 @@ public class Main
 			Connection con = DriverManager.getConnection(url, user, password);
 			Statement st = con.createStatement();
 
-			/**
-			*	SHOW DATABASES;
-			*	CREATE DATABASE "name DB";
-			*	USE "name database";
-			*	SELECT DATABASE(); - текущая база
-			*	
-			*	SHOW TABLES;
-			*	CREATE TABLE "name" ("name column" тип, "name column" тип, ...);
-			*	DESCRIBE "name tables";
-			*	
-			*	INSERT INTO "name" VALUES ('column1', 'column2', ...);
-			*	INSERT INTO "name" VALUE ();
-			*	
-			*	SELECT "what or '*'" FROM "tables name";
-			*	SELECT "what or '*'" FROM "tables name" WHERE;
-			*	
-			*	DELETE FROM "table name" WHERE "column"="value";
-			*	
-			*	UPDATE "name table" SET "column"="value", ... ;
-			*	UPDATE "name table" SET "column"="value" WHERE "id=3";
-			**/
+			/*
+			 * SHOW DATABASES;
+			 *	CREATE DATABASE "name DB";
+			 *	USE "name database";
+			 *	SELECT DATABASE(); - текущая база
+			 *
+			 * SHOW TABLES;
+			 *	CREATE TABLE "name" ("name column" тип, "name column" тип, ...);
+			 *	DESCRIBE "name tables"
+			 *
+			 * INSERT INTO "name" VALUES ('column1', 'column2', ...);
+			 * INSERT INTO "name" VALUE ();
+			 *
+			 * SELECT "what or '*'" FROM "tables name";
+			 *	SELECT "what or '*'" FROM "tables name" WHERE;
+			 *
+			 * DELETE FROM "table name" WHERE "column"="value";
+			 *
+			 *  UPDATE "name table" SET "column"="value", ... ;
+			 *	UPDATE "name table" SET "column"="value" WHERE "id=3";
+			 *
+			 * SELECT COUNT * FROM fiz;
+			 */
 
 			String query = "SELECT * FROM fiz";
 			ResultSet rs = st.executeQuery(query);
@@ -169,6 +171,9 @@ public class Main
 			}
 			System.out.println();
 
+			rs.last();
+			System.out.println(rs.getRow());
+
 			System.out.println("Delete");
 			String delete = fiz.delFizFromDbById();
 //			String delete = fiz.delFizFromDbByFio();
@@ -186,6 +191,9 @@ public class Main
 				System.out.println(fio);
 			}
 			System.out.println();
+
+			rs.last();
+			System.out.println(rs.getRow());
 
 			String query2 = query + " WHERE id>0";
 			rs = st.executeQuery(query2);
